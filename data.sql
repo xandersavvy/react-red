@@ -48,7 +48,41 @@ CREATE TABLE [Posts]
     [Header] [nVARCHAR](500) NOT NULL, 
     [Slug] [VARCHAR](450) UNIQUE NOT NULL ,
     [Content] [ntext] NOT NULL,
-    
+    [published] [date] NOT NULL DEFAULT GETDATE(),
+    [AuthorId] [UNIQUEIDENTIFIER] NOT NULL,
+    CONSTRAINT FK_AuthorName FOREIGN KEY (AuthorId) REFERENCES [Users] (UsersId),
+    -- specify more columns here
+);
+GO
+
+-- Create a new table called 'PostUpvote' in schema 'SchemaName'
+-- Drop the table if it already exists
+IF OBJECT_ID('PostUpvote', 'U') IS NOT NULL
+DROP TABLE [PostUpvote]
+GO
+-- Create the table in the specified schema
+CREATE TABLE [PostUpvote]
+(
+    PostId UNIQUEIDENTIFIER NOT NULL,
+    UserId UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT FK_Post FOREIGN KEY (PostId) REFERENCES [Posts](PostsId),
+    CONSTRAINT FK_User FOREIGN KEY (UserId) REFERENCES [Users](UsersId),
+    -- specify more columns here
+);
+GO
+
+-- Create a new table called 'PostUpvote' in schema 'SchemaName'
+-- Drop the table if it already exists
+IF OBJECT_ID('PostDownvote', 'U') IS NOT NULL
+DROP TABLE [PostDownvote]
+GO
+-- Create the table in the specified schema
+CREATE TABLE [PostDownvote]
+(
+    PostId UNIQUEIDENTIFIER NOT NULL,
+    UserId UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT FK_Post_Down FOREIGN KEY (PostId) REFERENCES [Posts](PostsId),
+    CONSTRAINT FK_User_Down FOREIGN KEY (UserId) REFERENCES [Users](UsersId),
     -- specify more columns here
 );
 GO
