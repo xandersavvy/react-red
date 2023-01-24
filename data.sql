@@ -63,6 +63,7 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE [PostUpvote]
 (
+    Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     PostId UNIQUEIDENTIFIER NOT NULL,
     UserId UNIQUEIDENTIFIER NOT NULL,
     CONSTRAINT FK_Post FOREIGN KEY (PostId) REFERENCES [Posts](PostsId),
@@ -79,6 +80,7 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE [PostDownvote]
 (
+    Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     PostId UNIQUEIDENTIFIER NOT NULL,
     UserId UNIQUEIDENTIFIER NOT NULL,
     CONSTRAINT FK_Post_Down FOREIGN KEY (PostId) REFERENCES [Posts](PostsId),
@@ -86,3 +88,4 @@ CREATE TABLE [PostDownvote]
     -- specify more columns here
 );
 GO
+
