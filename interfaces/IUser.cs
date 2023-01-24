@@ -1,6 +1,6 @@
 using react_red.Model;
 
-namespace react_red.interfaces;
+namespace react_red.interfaces{
 
 public partial class ILogin {
     public string Email { get; set;} = null!;
@@ -24,4 +24,5 @@ public interface IUser{
     bool isEmail(string email);
     bool isStrongPassword(string password);
 
+}
 }
