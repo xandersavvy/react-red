@@ -1,4 +1,4 @@
-using System.Net.Mail;
+    using System.Net.Mail;
 using System.Text.RegularExpressions;
 using react_red.interfaces;
 using react_red.Model;
@@ -65,6 +65,16 @@ public class UserDataAccess : IUser
             _.SaveChanges();
         }catch(Exception ex){
             Console.WriteLine(ex);
+        }
+    }
+
+    public void DeleteUser(Guid id)
+    {
+        User? user = GetUser(id);
+        if (user != null)
+        {
+            _.Users.Remove(user);
+            _.SaveChanges();
         }
     }
 
