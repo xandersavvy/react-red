@@ -29,12 +29,24 @@ namespace react_red.Controllers
             }
         }
 
-        [HttpGet("/post/{id}")]
+        [HttpGet("/post/id/{id}")]
         public IActionResult GetPostById(Guid id)
         {
             try
             {
                 var post = _postDataAccess.GetPostById(id);
+                return (post!=null)?Ok(post):NotFound();
+            }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("/post/{slug}")]
+        public IActionResult GetPostBySlug(string slug)
+        {
+            try
+            {
+                var post = _postDataAccess.GetPostBySlug(slug);
                 return (post!=null)?Ok(post):NotFound();
             }catch(Exception ex)
             {

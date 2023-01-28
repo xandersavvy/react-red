@@ -10,6 +10,7 @@ public interface IPost{
     IEnumerable<Post> GetPostByAuthor(Guid AuthorId);
 
     Post? GetPostById(Guid id);
+    Post? GetPostBySlug(string slug);
 
     void UpdatePost(Post post);
     void Delete(Guid id);

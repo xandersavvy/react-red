@@ -38,6 +38,10 @@ namespace react_red.DataAccess
         {
             return _.Posts.FirstOrDefault(p=>p.PostsId==id);
         }
+        public Post? GetPostBySlug(String slug)
+        {
+            return _.Posts.FirstOrDefault(p=>p.Slug==slug);
+        }
 
         public IEnumerable<Post> GetPosts()
         {
